@@ -107,11 +107,15 @@ describe('Counter component', () => {
 
   it('shows a warning once we hit the upper limit of the counter', () => {
     // implement
+    hitLowerLimit(1)
+    expect(tools.queryByText(/That's as high/i)).toBeInTheDocument()
 
   });
 
   it('shows a warning once we hit the lower limit of the counter', () => {
     // implement
+    hitLowerLimit()
+    expect(tools.queryByText(/count will go/i)).toBeInTheDocument()
   });
 
   function hitLowerLimit(type = 0){
