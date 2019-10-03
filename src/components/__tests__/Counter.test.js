@@ -12,7 +12,7 @@ beforeEach(() => {
 
 describe('Counter component', () => {
   it('can debug the output', () => {
-    tools.debug();
+    // tools.debug();
   });
 
   it('shows the correct user', () => {

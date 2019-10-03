@@ -28,6 +28,21 @@ describe('sum', () => {
 
 describe('multiply', () => {
   // write tests! <================================================
+  it('can multiply two positive digits', () => {
+    expect(helpers.multiply(3,3)).toBe(9)  
+  })
+  it('can multiply two negative digits', () => {
+    expect(helpers.multiply(-3,-3)).toBe(9)  
+  })
+  it('can multiply mixed polarity digits', () => {
+    expect(helpers.multiply(3,-3)).toBe(-9)
+    expect(helpers.multiply(-3,3)).toBe(-9)
+  })
+  it('curses you out if you don\'t pass a number', () => {
+    expect( () => helpers.multiply(3,'3')).toThrow()
+    expect( () => helpers.multiply('3',3)).toThrow()
+    expect( () => helpers.multiply('3','3')).toThrow()
+  })
 });
 
 describe('personMaker', () => {
