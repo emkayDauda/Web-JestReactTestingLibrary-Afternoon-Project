@@ -7,7 +7,7 @@ let tools;
 
 beforeEach(() => {
   rtl.cleanup();
-  tools = rtl.render(<Counter user='Peter' />);
+  tools = rtl.render(<Counter user='Peter' countLimit={5} />);
 });
 
 describe('Counter component', () => {
@@ -78,10 +78,40 @@ describe('Counter component', () => {
 
   it('prevents the count from going over an upper limit', () => {
     // implement
-  });
+    const incButton = tools.queryByTestId('incButton');
+    
+    rtl.fireEvent.click(incButton)
+    rtl.fireEvent.click(incButton)
+    rtl.fireEvent.click(incButton)
+    rtl.fireEvent.click(incButton)
+    rtl.fireEvent.click(incButton)
+
+    expect(tools.queryByText(/5/)).toBeInTheDocument()
+    rtl.fireEvent.click(incButton)
+    rtl.fireEvent.click(incButton)
+    // tools.debug()
+    expect(tools.queryByText(/5/)).toBeInTheDocument()
+    expect(tools.queryByText(/6/)).not.toBeInTheDocument()
+
+  })
 
   it('prevents the count from going under a lower limit', () => {
     // implement
+
+    const decButton = tools.queryByTestId('decButton');
+    
+    rtl.fireEvent.click(decButton)
+    rtl.fireEvent.click(decButton)
+    rtl.fireEvent.click(decButton)
+    rtl.fireEvent.click(decButton)
+    rtl.fireEvent.click(decButton)
+
+    expect(tools.queryByText(/-5/)).toBeInTheDocument()
+    rtl.fireEvent.click(decButton)
+    rtl.fireEvent.click(decButton)
+    // tools.debug()
+    expect(tools.queryByText(/-5/)).toBeInTheDocument()
+    expect(tools.queryByText(/-6/)).not.toBeInTheDocument()
   });
 
   it('shows a warning once we hit the upper limit of the counter', () => {
