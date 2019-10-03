@@ -80,11 +80,7 @@ describe('Counter component', () => {
     // implement
     const incButton = tools.queryByTestId('incButton');
     
-    rtl.fireEvent.click(incButton)
-    rtl.fireEvent.click(incButton)
-    rtl.fireEvent.click(incButton)
-    rtl.fireEvent.click(incButton)
-    rtl.fireEvent.click(incButton)
+    hitLowerLimit(1)
 
     expect(tools.queryByText(/5/)).toBeInTheDocument()
     rtl.fireEvent.click(incButton)
@@ -97,14 +93,9 @@ describe('Counter component', () => {
 
   it('prevents the count from going under a lower limit', () => {
     // implement
-
     const decButton = tools.queryByTestId('decButton');
     
-    rtl.fireEvent.click(decButton)
-    rtl.fireEvent.click(decButton)
-    rtl.fireEvent.click(decButton)
-    rtl.fireEvent.click(decButton)
-    rtl.fireEvent.click(decButton)
+    hitLowerLimit()
 
     expect(tools.queryByText(/-5/)).toBeInTheDocument()
     rtl.fireEvent.click(decButton)
@@ -116,9 +107,29 @@ describe('Counter component', () => {
 
   it('shows a warning once we hit the upper limit of the counter', () => {
     // implement
+
   });
 
   it('shows a warning once we hit the lower limit of the counter', () => {
     // implement
   });
+
+  function hitLowerLimit(type = 0){
+    const decButton = tools.queryByTestId('decButton');
+    const incButton = tools.queryByTestId('incButton');
+
+    if(type === 0){
+      rtl.fireEvent.click(decButton)
+      rtl.fireEvent.click(decButton)
+      rtl.fireEvent.click(decButton)
+      rtl.fireEvent.click(decButton)
+      rtl.fireEvent.click(decButton)
+    } else {
+      rtl.fireEvent.click(incButton)
+      rtl.fireEvent.click(incButton)
+      rtl.fireEvent.click(incButton)
+      rtl.fireEvent.click(incButton)
+      rtl.fireEvent.click(incButton)
+    }
+  }
 });
