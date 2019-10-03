@@ -43,6 +43,14 @@ describe('multiply', () => {
     expect( () => helpers.multiply('3',3)).toThrow()
     expect( () => helpers.multiply('3','3')).toThrow()
   })
+  it('curses you out if fed no arguments', () => {
+    expect( () => helpers.multiply()).toThrow()
+  })
+  it('curses you out if fed one argument', () => {
+    expect( () => helpers.multiply(2)).toThrow()
+    expect( () => helpers.multiply('2')).toThrow()
+    expect( () => helpers.multiply(-2)).toThrow()
+  })
 });
 
 describe('personMaker', () => {
