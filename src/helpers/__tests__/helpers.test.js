@@ -28,6 +28,29 @@ describe('sum', () => {
 
 describe('multiply', () => {
   // write tests! <================================================
+  it('can multiply two positive digits', () => {
+    expect(helpers.multiply(3,3)).toBe(9)  
+  })
+  it('can multiply two negative digits', () => {
+    expect(helpers.multiply(-3,-3)).toBe(9)  
+  })
+  it('can multiply mixed polarity digits', () => {
+    expect(helpers.multiply(3,-3)).toBe(-9)
+    expect(helpers.multiply(-3,3)).toBe(-9)
+  })
+  it('curses you out if you don\'t pass a number', () => {
+    expect( () => helpers.multiply(3,'3')).toThrow()
+    expect( () => helpers.multiply('3',3)).toThrow()
+    expect( () => helpers.multiply('3','3')).toThrow()
+  })
+  it('curses you out if fed no arguments', () => {
+    expect( () => helpers.multiply()).toThrow()
+  })
+  it('curses you out if fed one argument', () => {
+    expect( () => helpers.multiply(2)).toThrow()
+    expect( () => helpers.multiply('2')).toThrow()
+    expect( () => helpers.multiply(-2)).toThrow()
+  })
 });
 
 describe('personMaker', () => {
@@ -41,4 +64,21 @@ describe('personMaker', () => {
   });
 
   // write more tests! <===========================================
+
+  const newPerson = helpers.personMaker('me', 23)
+  expect(newPerson).toEqual({
+      id: '123',
+      name: 'me',
+      age: 23,
+  })
+
+  it('can increase person age', () => {
+    const newPerson = helpers.personMaker('me', 23)
+    newPerson.age += 2
+    expect(newPerson).toEqual({
+      id: '123',
+      name: 'me',
+      age: 25,
+  })
+  })
 });
